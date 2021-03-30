@@ -3,7 +3,7 @@ from scrape import scrape, check_stock, create_message
 import requests
 import json
 
-slack_url = 'https://hooks.slack.com/services/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'
+slack_url = "INSERT_URL"
 slack_header = {'Content-type': 'application/json'}
 
 for g60 in GTX3060TI:
