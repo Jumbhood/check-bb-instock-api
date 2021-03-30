@@ -3,7 +3,7 @@ from scrape import scrape, check_stock, create_message
 import requests
 import json
 
-slack_url = 'https://hooks.slack.com/services/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'
+slack_url = 'https://hooks.slack.com/services/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'
 slack_header = {'Content-type': 'application/json'}
 
 for g60 in GTX3060TI:
@@ -55,8 +55,9 @@ for g90 in GTX3090:
 #     data = scrape(t)
 #     result = check_stock(data)
 #     if result == False:
-#         pass
+#         print("[ INFO ] - {} - {}".format(data['name'], "Not in Stock"))
 #     else:
 #         text = create_message(data)
 #         myobj = {'text' : text}
 #         r = requests.post(slack_url, data = json.dumps(myobj), headers = slack_header)
+#         print("[ ALERT ] - {} - {}".format(data['name'], "In Stock"))
