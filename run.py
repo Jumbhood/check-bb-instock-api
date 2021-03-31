@@ -3,7 +3,7 @@ from scrape import scrape, check_stock, create_message, send_request
 import requests
 import json
 
-gitslack_url = "INSERT_URL"
+slack_url = "INSERT_URL"
 slack_header = {'Content-type': 'application/json'}
 
 if __name__ == '__main__':
