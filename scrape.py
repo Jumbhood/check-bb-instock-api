@@ -1,6 +1,5 @@
 import requests
 from fake_useragent import UserAgent
-import subprocess
 import json
 
 def scrape(product_id):

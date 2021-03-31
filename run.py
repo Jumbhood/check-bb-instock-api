@@ -1,7 +1,5 @@
 from product_list import GTX3060TI, GTX3070, GTX3080, GTX3090
-from scrape import scrape, check_stock, create_message, send_request
-import requests
-import json
+from scrape import *
 
 slack_url = "INSERT_URL"
 slack_header = {'Content-type': 'application/json'}
