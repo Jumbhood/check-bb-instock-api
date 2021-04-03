@@ -35,7 +35,7 @@ def create_message(data):
     text = 'Hey <!everyone>! Seems like `{}` is in stock now for `{} CAD`, check :alert:<{}|*Purchase Link*>:alert:'.format(name, sale_price, product_url)
     return text
 
-def send_request(card_list, slack_url, slack_header):
+def send_request(card_list, slack_url, slack_header, instock_list = []):
     for card in card_list:
         data = scrape(card)
         if data == False:
@@ -43,11 +43,17 @@ def send_request(card_list, slack_url, slack_header):
         else:
             result = check_stock(data)
             if result == False:
+                if card in instock_list:
+                    instock_list.remove(card)
                 print("[ INFO ] - {} - {}".format(data['name'], "Not in Stock"))
             elif result == True:
                 text = create_message(data)
                 myobj = {'text' : text}
-                r = requests.post(slack_url, data = json.dumps(myobj), headers = slack_header)
-                print("[ ALERT ] - {} - {}".format(data['name'], "In Stock"))
+                if card in instock_list:
+                    print("[ ALERT ] - {} - {}".format(data['name'], "In Stock (Silent Mode)"))
+                else:
+                    r = requests.post(slack_url, data = json.dumps(myobj), headers = slack_header)
+                    print("[ ALERT ] - {} - {}".format(data['name'], "In Stock"))
+                    instock_list.append(card)
             else:
                 print("[ ALERT ] - {} - {}".format(data['name'], "Unknown Status"))
