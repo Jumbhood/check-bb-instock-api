@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: check-bb-deployment
+  labels:
+    app: check-bb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: check-bb
+  template:
+    metadata:
+      labels:
+        app: check-bb
+    spec:
+      containers:
+      - name: check-bb
+        image: jumbhood/check-bb:v1
